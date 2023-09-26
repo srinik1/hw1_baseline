@@ -1,4 +1,5 @@
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 /**
  * The ExpenseTrackerApp class allows users to add/remove daily transactions.
@@ -36,12 +37,13 @@ public class ExpenseTrackerApp {
         // Call controller to add transaction
         view.addTransaction(t);
       }else if(!validator.validateAmount(amount)){
-        System.out.println("Amount entered is invalid. Please enter a value between 0 and 1000");
+        showErrorPopUp("Invalid Amount value. Please enter a value between 0 and 1000");
       }else{
-        System.out.println("Category entered is invalid. Please enter a valid category");
+        showErrorPopUp("Invalid Category value. Please enter a value from the following:  \"food\", \"travel\", \"bills\", \"entertainment\" and \"other\"");
       }
     });
-
+    }
+  private static void showErrorPopUp(String message) {
+    JOptionPane.showMessageDialog(null, message, "Input Error", JOptionPane.ERROR_MESSAGE);
   }
-
 }
