@@ -1,10 +1,14 @@
 import javax.swing.table.DefaultTableModel;
+
+import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 
 /**
  * The ExpenseTrackerApp class allows users to add/remove daily transactions.
  */
 public class ExpenseTrackerApp {
+  private static final Logger logger = Logger.getLogger(ExpenseTrackerApp.class.getName());
 
   public static void main(String[] args) {
     
@@ -24,11 +28,14 @@ public class ExpenseTrackerApp {
     view.setVisible(true);
 
     // Handle add transaction button clicks
+    logger.info("The Add Transaction button is being called");
     view.getAddTransactionBtn().addActionListener(e -> {
       
       // Get transaction data from view
       double amount = view.getAmountField(); 
       String category = view.getCategoryField();
+
+      logger.info("Validating the amount and category");
 
       if(validator.validateAmount(amount) && validator.validateCategory(category)){
         // Create transaction object
