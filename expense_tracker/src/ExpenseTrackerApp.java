@@ -43,6 +43,11 @@ public class ExpenseTrackerApp {
       }
     });
     }
+  /**
+   * Displays an error popup dialog with the eroor message.
+   *
+   * @param message The error message to be displayed in the popup.
+   */
   private static void showErrorPopUp(String message) {
     JOptionPane.showMessageDialog(null, message, "Input Error", JOptionPane.ERROR_MESSAGE);
   }

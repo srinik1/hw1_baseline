@@ -4,7 +4,9 @@ import org.junit.Test;
 import javax.swing.table.DefaultTableModel;
 
 import static org.junit.Assert.assertEquals;
-
+/**
+ * The ExpenseTrackerTest class is used to test the Expense tracker App
+ */
 public class ExpenseTrackerTest {
 
     private ExpenseTrackerView view;
