@@ -25,24 +25,28 @@ public class ExpenseTrackerApp {
 
     // Handle add transaction button clicks
     view.getAddTransactionBtn().addActionListener(e -> {
-      
-      // Get transaction data from view
-      double amount = view.getAmountField(); 
-      String category = view.getCategoryField();
+      try {
+        // Get transaction data from view
+        double amount = view.getAmountField();
+        String category = view.getCategoryField();
 
-      if(validator.validateAmount(amount) && validator.validateCategory(category)){
         // Create transaction object
         Transaction t = new Transaction(amount, category);
 
+        validator.validateAmount(amount);
+        validator.validateCategory(category);
+
         // Call controller to add transaction
         view.addTransaction(t);
-      }else if(!validator.validateAmount(amount)){
-        showErrorPopUp("Invalid Amount value. Please enter a value between 0 and 1000");
-      }else{
-        showErrorPopUp("Invalid Category value. Please enter a value from the following:  \"food\", \"travel\", \"bills\", \"entertainment\" and \"other\"");
+      } catch (InvalidAmountException ex) {
+        showErrorPopUp(ex.getMessage());
+        throw new RuntimeException(ex);
+      } catch (InvalidCategoryException ex) {
+        showErrorPopUp(ex.getMessage());
+        throw new RuntimeException(ex);
       }
     });
-    }
+  }
   /**
    * Displays an error popup dialog with the eroor message.
    *
